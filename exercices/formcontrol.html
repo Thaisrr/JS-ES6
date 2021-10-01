@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Form Control</title>
+        <meta charset="UTF-8">
+    </head>
+    <body>
+        <form id="form">
+            <p>
+                <label for="nom">Nom</label>
+                <input id="nom">
+            </p>
+            <p>
+                <label for="prenom">Prenom</label>
+                <input id="prenom">
+            </p>
+            <p>
+                <button type="submit">Envoyer</button>
+            </p>
+        </form>
+
+        <script>
+            function capitalize(str) {
+                str = str.trim();
+                first_letter = str[0].toUpperCase();
+                last_letters = str.slice(1).toLowerCase();
+                return first_letter + last_letters;
+            }
+
+
+            document.addEventListener('DOMContentLoaded', () => {
+                const form = document.getElementById('form');
+                const nom = document.getElementById('nom');
+                const prenom = document.getElementById('prenom');
+
+                nom.addEventListener('blur', () => {
+                    console.log("on quitte le focus");
+                });
+
+                form.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    let nom_value = capitalize(nom.value);
+                    let prenom_value = capitalize(prenom.value);
+                    console.log(nom_value, prenom_value);
+                    const regex = /^(?=.{1,40}$)[a-zA-ZïÏëËéèçêâà]+(?:[-'\s][a-zA-ZïÏëËéèçêâà]+)*$/;
+                    
+              
+                    if(!nom_value.match(regex) && !prenom_value.match(regex)) {
+                        alert('Formulaire invalide')
+                    } else if( !nom_value.match(regex)) {
+                        alert('Nom invalide');
+                    } else if( !prenom_value.match(regex)) {
+                        alert('Prenom invalide');
+                    } else {
+                        console.info('Formulaire envoyé');
+                        form.reset();
+                        //form.submit();
+                    }
+
+                    
+                });
+            });
+
+        </script>
+
+    </body>
+</html>

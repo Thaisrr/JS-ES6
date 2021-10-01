@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Les boucles</title>
+        <meta charset="UTF-8">
+    </head>
+    <body>
+        <script>
+            /*** Les boucles ***/
+
+            /*
+            Un block d'instructions qui va se répéter tant qu'une
+            condition n'est pas remplie
+            */
+
+            /* On veut répéter l'instruction x foi, en connaissant x */
+
+            for(let i = 1; i <= 10; i++ ) {
+                console.log(`Tour ${i}`);
+            }
+            /*
+            Cycle d'une boucle for : 
+            1. création de la variable de référence
+            2. Condition pour entrer dans la boucle
+            3. Exécution du block d'instruction
+            4. Modification de la variable de référence
+            5. Retour à l'étape 2
+            */
+
+            /*** While ****/
+
+            /* Répète l'action tant que la condition donnée est vrai
+            */
+
+
+            let i = 10;
+            while( i >= 0 ) {
+                console.log(`${i}s avant exécution`);
+                i--;
+            }
+
+            while( confirm('Continuer ?')  ) {
+                console.log('On continue');
+            }
+
+        
+            while( isNaN(prompt('Quel est votre age ?')) ) {
+                alert('Entrez un age valide !')
+            }
+
+            /*** do while *****/
+
+            /* Le do while fonctionne sur le même principe que le while
+            La différence est que le block d'instructions s'exécute au moins
+            une fois, la condition étant vérifiée après 
+            */
+            do {
+                console.log('coucou')
+            } while (confirm('say hello ?'));
+
+
+        </script>
+    </body>
+</html>

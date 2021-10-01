@@ -1,0 +1,73 @@
+Guess the Number !
+
+L'user doit retrouver le nombre auquel "pense" l'ordinateur
+-> Toute la communication doit se faire avec les boîtes de dialogue
+
+-> Voulez vous jouer ? 
+    Oui : jouer
+    Non : Dommage bisous
+
+-> L'utilisateur entre des nombres pour essayer de deviner
+    -> On lui donne des indices "trop haut", "trop bas", 
+   (  "trop haut, mais on se rapproche", "trop bas, mais on se rapproche" )
+   -> Si il trouve, on lui dit bravo, et on propose de recommencer
+   
+
+-> On range le code dans des fonctions
+
+-> 1 fonction pour 1 rôle
+-> Les fonctions peuvent s'appeler en elles
+
+
+Exemple de découpage de fonctions :
+
+
+function startGame() {
+    ////
+}
+
+function savePartie() {
+    ///
+}
+
+function dialogue() {
+    /// do something
+    const bidule = uneFonction();
+    // Do something
+}
+
+fonction avancer() {
+    // do something
+    autreFonction()
+}
+
+function action() {
+    /// if ()
+            avancer();
+        else if ()
+            dialogue();
+}
+
+
+start();
+
+
+
+1. décomposer les tâches : en français, avant même de se lancer dans le code, 
+décrire l'algorithme et les différentes parties du jouer
+
+2. découper en fonctions, et les coder les unes après les autres, 
+pas toute en même temps : 
+-> 1ère fonctionnalité -> description -> code -> tests
+-> ect...
+
+
+-> On peut appeler des fonctions dans des fonctions
+-> Certaines fonctions retournent une valeure, dans ce cas il faut
+enregistrer cette valeur quelque part pour l'utilisateur
+( exemple : résultat d'une opération, texte, booléan...)
+
+// quelque chose
+
+
+// explication

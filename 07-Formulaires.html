@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8">
+        <title>Formulaires</title>
+        <style>
+            fieldset {
+                width: 30%;
+                margin: 30px auto;
+            }
+
+            input:invalid {
+                background-color: red;
+            }
+        </style>
+    </head>
+    <body>
+        <h1 id="titre">Authentification</h1>
+
+        <fieldset>
+            <legend>Inscrivez vous</legend>
+            
+            <form id="form">
+                <p>
+                    <label for="name">Name</label>
+                    <input id="name">
+                </p>
+                <p>
+                    <label for="pwd">Password</label>
+                    <input id="pwd" type="password">
+                    <p id="guides">
+                        <span id="min">Minuscule</span>
+                        <span id="maj"> Majuscule</span>
+                        <span id="numb"> Chiffre</span>
+                        <span id="size"> 8 caractères mini</span>
+                    </p>
+                </p>
+                <p>
+                    <button type="submit">S'inscrire</button>
+                    <button type="reset">Reset</button>
+                </p>
+            </form>
+        </fieldset>
+
+
+        <script>
+        
+
+            document.addEventListener('DOMContentLoaded', () => {
+                const titre = document.getElementById('titre');
+                titre.setAttribute('title', 'Je suis un titre');
+                console.log( titre.getAttribute('id') ); // string
+                console.log( titre.hasAttribute('href')); // bool
+
+                const form = document.getElementById('form');
+                const nom = document.getElementById('name');
+                const pwd = document.getElementById('pwd');
+
+                nom.addEventListener('input', () => {
+                    const value = nom.value;
+                    console.log('Nouvelle valeur : ', value)
+                });
+
+                nom.addEventListener('focus', () => {
+                    console.log('------- focus on nom')
+                });
+
+                
+                const error = document.createElement('p');
+                error.style.color = 'red';
+                let isNameValid = false;
+                let isPwdValid = false;
+
+                nom.addEventListener('blur', () => {
+                    const parent = nom.parentElement;
+                    // vérification de l'entrée
+
+                    if(!nom.value || nom.value.length < 3  ) {
+                        // afficher les erreurs correspondantes
+                       error.textContent = 'Veuillez un nom valide';
+                       nom.style.borderColor = 'red';
+                        parent.appendChild(error);
+                        isNameValid = false;
+                    } else {
+                        if(parent.contains(error)) {
+                            parent.removeChild(error);
+                        }
+                        nom.style.borderColor = 'green';
+                        isNameValid = true;
+                    }
+                });
+
+
+
+                // 8 caractères 
+                const size = document.getElementById('size');
+                const min = document.getElementById('min');
+                const maj = document.getElementById('maj');
+                const numb = document.getElementById('numb');
+
+                // Input de password
+                pwd.addEventListener('input', () => {
+                    isPwdValid = true;
+                    if( pwd.value && pwd.value.length >= 8 ) {
+                        size.style.color = 'green';
+                    } else {
+                        size.style.color = 'black';
+                        isPwdValid = false;
+                    }
+                    if (pwd.value.match(/[A-Z]/)) {
+                        maj.style.color = 'green';
+                    } else {
+                        maj.style.color = 'black';
+                        isPwdValid = false;
+                    }
+                    if(pwd.value.match(/[a-z]/)) {
+                        min.style.color = 'green';
+                    } else {
+                        min.style.color = 'black';
+                        isPwdValid = false;
+                    }
+                    if(pwd.value.match(/[0-9]/)) {
+                        numb.style.color = 'green';
+                    } else {
+                        numb.style.color = 'black';
+                        isPwdValid = false;
+                    }
+         // numb.style.color = (pwd.value.match(/[0-9]/))? 'green': 'black';                    
+                });
+
+                pwd.addEventListener('blur', () => {
+                    const parent = pwd.parentElement;
+                    console.log(parent.firstChild) // label
+                    console.log(parent.hasChildNodes()) // true ou false
+                    console.log(parent.childNodes); // Array de tous les enfants
+                    if( !pwd.value || !isPwdValid) {
+                        // Afficher une erreur
+                        error.textContent = 'Veuillez entre un mot de passe valide';
+                        parent.appendChild(error);
+                        pwd.style.color = 'red';
+                        isPwdValid = false;
+                    } else {
+                        // Encadre en vert, et retire l'erreur
+                        if(parent.contains(error)) {
+                            parent.removeChild(error);
+                        }
+                        pwd.style.borderColor = 'green';
+                    }
+                })
+
+
+
+                // Element form
+                form.addEventListener('submit', (event) => {
+                    // Annuler le comportement par défaut de l'élément
+                    // Annule le rechargement de la page
+                    event.preventDefault();
+                    console.log('in submit');
+
+                    /* Vérifie si les données sont OK */
+                    if(isNameValid && isPwdValid) {
+                        console.log('envoie des données');
+                        // Si php : 
+                        form.submit();
+
+                    } else {
+                        alert('Veuillez corriger le form');
+                        console.log('pwd ', isPwdValid);
+                        console.log('name ', isNameValid);
+                    }
+                })
+            });
+
+        </script>
+    </body>
+</html>

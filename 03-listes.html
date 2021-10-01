@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Les listes</title>
+    </head>
+    <body>
+        <script>
+            /* Les listes ou tableaux */
+            const fruits = ['Pomme', 'Poire', 'Framboises'];
+            console.log(fruits);
+            // Afficher le 1er élément de ma liste
+            // Le premier élément a toujours l'index 0
+            console.log( fruits[0] ); 
+            console.log( fruits[1] ); 
+            console.log( fruits[2] ); 
+
+            /* Un tableau = Array  peut contenir entre 0 et x éléments */
+            const tab_vide = [];
+            console.log(tab_vide[0]);
+
+            console.log( `J'ai ${fruits.length} fruits dans mon tableau` );
+
+            // ajoute un élément à la fin du tableau
+            fruits.push('Fraise');
+
+
+            /*** Parenthèse chiante sur la mémoire *****/
+            
+            let a = 'toto';
+            let b = a;
+            b = 'bidule';
+            console.log(b); //bidule
+            console.log(a); //toto
+
+            let fruits2 = fruits;
+            fruits2.push('Banane');
+            console.log(fruits2); // ....fraises,  bananes
+            console.log(fruits); // .... fraises, banane
+            fruits2 = ['épinards'];
+            console.log(fruits);
+            console.log(fruits2);
+
+            /*** Fin de parenthèse ****/
+
+
+            /* fruits[]
+            0: ..
+            1: ..
+            2: ..
+            length : 3
+            fruits[3]
+            */
+           fruits[0] = 'Patates';
+           console.log(fruits);
+            fruits[fruits.length] = 'machin';
+            console.log(fruits);
+
+        fruits.pop();
+        console.log(fruits);
+        
+        // Retourne un boolean : true ou false
+        const exist = fruits.includes('Patates');
+        console.log( exist );
+
+        /* retourne un number
+            soit l'index de l'élément trouvé
+            ( 0, 1, 2, 3, n....)
+            soit, si il ne trouve pas d'élément correspondant
+            retourne -1
+        */
+        let index = fruits.indexOf('Patates'); // 0
+        if(index >= 0) {
+            fruits[index] = 'Courgette'; 
+            console.log(`"Patates" était à l'index ${index}`);
+        } else {
+            fruits.push('Courgette');
+            console.log(`Il n'y avait pas de patate dans ce tableau`)
+        }
+    
+
+        index = fruits.indexOf('Courgette');
+        
+        /* Supprimer et ou remplacer un élément du tableau */
+
+        // 1 élément à l'index indiquée
+        fruits.splice(index, 1);
+
+        // Supprimer 1 élément, à partir de l'index 2, 
+        // + le remplacer par 'Myrtille;
+        fruits.splice(2, 1, 'Myrtille');
+        index
+        // Sans rien supprimer, j'insère un nouvel élément
+        // à l'index indiqué
+        fruits.splice(3, 0, 'Cassis' );
+
+        console.log(fruits);
+
+
+        /* Parcourir un tableau */
+        for(let i = 0; i < fruits.length; i++) {
+            console.log( fruits[i] );
+        }
+
+        for(let f of fruits) {
+            f = f + ' *';
+            console.log(f);
+        }
+
+        console.log(fruits);
+
+        fruits.forEach( (f, i) => {
+            f += ' %';
+            console.log(f);
+            fruits[i] += '.';
+        });
+
+        fruits.forEach( f => console.log(f));
+
+        console.log(fruits);
+
+
+        const numbers = [ 6, 98, 4, 0, 12, 57, 82];
+
+        /*
+        Renvoie un deuxième tableau
+        Dont les éléments réponde à la condition
+        qu'on lui passe en callback
+        */
+        const filtered = numbers.filter( (nb) => nb > 50  );
+        // Ici : un deuxième tableau avec uniquement les nombres
+        // Supérieur à 50
+        console.log( filtered );
+
+        // Renvoie un deuxième tableau en modifiant la valeur de chaque
+        // item en fonction de ce qu'on lui passe en callback
+        const modified = numbers.map( (nb) => nb * 2 );
+
+        console.log( modified);
+
+        // sort : par défaut, Tri par ordre ASCII / alphabétique
+        fruits.sort();
+        console.log(fruits);
+        
+        // number : croissant
+        numbers.sort( (a, b) => a - b);
+        console.log(numbers);
+        // number : décroissant
+        numbers.sort( (a, b) => b - a);
+        console.log(numbers);
+
+        fruits.reverse();
+        console.log(fruits);
+
+        
+
+    
+        </script>
+    </body>
+</html>

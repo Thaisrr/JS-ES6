@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <title>Les objets</title>
+        <meta charset="UTF-8">
+    </head>
+    <body>
+
+        <ul id="products"></ul>
+
+        <script>
+            /* Les Objets : 
+            Tasse à café : 
+                Propriétés : 
+                - forme
+                - couleur
+                - ance?
+                - contenance Max
+                - contenance Réelle
+                - Propre ?
+
+                - Remplir
+                - Vider
+                - Laver
+            */
+           // Classes : description d'un objet
+
+           class Tasse {
+               // Attributs ou Propriétés
+               shape;
+               color;
+               hasAnce = true;
+               contentMax = 200; // en ml
+               contentReel = 0;
+               isClean = true;
+
+               // Constructeur
+                constructor(couleur, forme){
+                    this.color = couleur;
+                    this.shape = forme;
+                    console.warn('Nouvelle tasse créée');
+                }
+
+                // Méthodes
+                // Fonctions propres à une classe
+                remplir() {
+                    this.contentReel = this.contentMax;
+                }
+
+                boire() {
+                    if(this.contentReel > 0) {
+                        if(this.contentReel >= 50) {
+                            this.contentReel -= 50;
+                        } else {
+                            this.contentReel = 0;
+                        }
+                        console.log('glou glou')
+                    } else {
+                        console.log('plus de café')
+                    }
+                }
+
+           }
+
+           // Objet : new Tasse : créer un nouvel objet Tasse
+           // Un objet c'est une instance de classe
+           const mug1 = new Tasse('blanche', 'ronde');
+           console.log(mug1);
+           mug1.contentMax = 250;
+           mug1.isClean = true;
+           console.log(mug1);
+           console.log('J\'ai une tasse ' + mug1.color);
+           const mug2 = new Tasse('bleue', 'ovale');
+
+           console.log(`mon mug contient ${mug1.contentReel}ml de café`);
+           mug1.remplir();
+           console.log(`mon mug contient ${mug1.contentReel}ml de café`);
+           mug1.boire();
+           mug1.boire();
+           mug1.boire();
+           console.log(`mon mug contient ${mug1.contentReel}ml de café`);
+           mug1.boire();
+           mug1.boire();
+           console.log(`mon mug contient ${mug1.contentReel}ml de café`);
+           mug1.boire();
+           mug1.boire();
+           console.log(`mon mug contient ${mug1.contentReel}ml de café`);
+
+
+           class Produit {
+               nom;
+               prix;
+               category; // Objet category
+
+               constructor(nom, prix, category) {
+                   this.nom = nom;
+                   this.prix = prix;
+                   this.category = category;
+               }
+           }
+
+           class Category {
+                nom;
+                parent; // catégory 
+                produits = []; // listes objets produits
+
+                constructor(nom) {
+                    this.nom = nom;
+                    this.produits = [];
+                }
+
+                addProduct(produit) {
+                    console.log('ajout de produit')
+                    if(produit) {
+                        this.produits.push(produit);
+                    }
+                }
+
+                setParent(parent_cat) {
+                    if(parent_cat instanceof Category) {
+                        this.parent = parent_cat;
+                    } else {
+                        console.error('Erreur : ce n\'est pas une cat');
+                    }
+                }
+
+           }
+
+           const cat = new Category('Chaussures');
+           console.log(cat instanceof Category); // true
+           console.log(42 instanceof Category); // false
+           const sub_cat = new Category('Charantaises');
+           //sub_cat.parent = cat;
+           sub_cat.setParent('toto'); // Erreur
+           sub_cat.setParent(cat); // OK
+           console.log(sub_cat);
+
+           const prod = new Produit('Charentaises à pois', 20, sub_cat );
+           console.log(prod);
+           sub_cat.addProduct(prod);
+           console.log(sub_cat);
+
+           const prod2 = new Produit('Charentaises rayées', 24, sub_cat);
+           sub_cat.addProduct(prod2);
+
+           /* Afficher le nom de tous les produits de la cat Charentaises */
+           
+           const ul = document.getElementById('products');
+
+           console.log( sub_cat.produits );
+           // produits -> array
+           for(let prod of sub_cat.produits ) {
+                // Créer un él <li> et l'afficher dans la liste <ul>
+                const li = document.createElement('li');
+                console.warn(prod);
+                console.info(prod.nom);
+                li.textContent = prod.nom + ' ' + prod.prix + '€';
+                ul.appendChild(li);        
+           } 
+
+           /*
+           sub_cat.produits.forEach(prod => {
+
+           })
+           */
+
+
+           class User {
+               nom;
+               prenom;
+               age;
+
+               sayHello() {
+                   console.log('Hello World');
+               }
+               
+            }
+
+
+           let user = {
+               nom: 'Jean Michel', 
+               prenom: 'LaTourte', 
+               age: 56
+            };
+           console.log(user);
+           console.log(user instanceof User); // false
+           // user.sayHello(); // Erreur : user.sayHello is not a function
+           console.log(user.nom + ' ' + user.prenom);
+
+
+           /*
+           Dans un objet, this représente l'instance de l'objet
+           en cours, c'est ce qu'on appelle le contexte.
+           Cependant : dans un méthode en fonction fléchée, 
+           le contexte ( this ) est différent : ce sera l'instance
+           de l'objet le plus haut possible, ici l'objet Window
+           */
+           let chat = {
+               nom: 'Banzaï',
+               miauler : () => console.log(this),
+               miauler2() {
+                   console.log(this);
+               },
+               miauler3: function() {
+                   console.log('Miaou 3 ', this.nom);
+               }
+           }
+
+           chat.miauler();
+           chat.miauler2();
+           chat.miauler3();
+
+           const all_users = [
+               {nom : 'machin1'},
+               {nom : 'machin2'},
+               {nom : 'machin3'},
+           ]
+
+           const date = '01/02/2021';
+           const age = 23;
+           const isAdmin = true;
+
+           //const u = {date : date, age: age, isAdmin: isAdmin};
+           const u = {date, age, isAdmin}; 
+
+           const somme = (a, b) => a + b;
+
+
+           const tab = ['Hello', 'World'];
+           const copy = [...tab];
+           console.log(copy);
+           console.log( ...tab ); // Hello World
+
+           // On peut passer autant d'arguments qu'on le souhaite
+           function sum(...values) {
+                // un tableau
+                let result = 0;
+                for (let val of values) {
+                    result += val;
+                }
+                return result;
+           }
+
+           console.log( sum(3, 4, 5, 2, 1) );
+
+
+
+
+
+
+
+
+
+
+
+
+
+           
+           
+
+
+
+           
+            
+        </script>
+    </body>
+</html>

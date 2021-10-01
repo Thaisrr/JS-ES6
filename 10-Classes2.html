@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title></title>
+    </head>
+    <body>
+        <script>
+            class Vehicule {
+                nb_roues;
+                nb_portes;
+                type_guidon;
+                couleur;
+
+                constructor(roues, portes, guidon, couleur) {
+                    this.nb_roues = roues;
+                    this.nb_portes = portes;
+                    this.type_guidon = guidon;
+                    this.couleur = couleur;
+                }
+            }
+
+            class Moto extends Vehicule {
+                machin;
+
+                constructor(couleur, machin) {
+                    super(2, 0, 'guidon', couleur);
+                    this.machin = machin;
+                }
+            }
+
+            class Voiture extends Vehicule {
+
+                constructor(portes, couleur) {
+                    super(4, portes, 'volant', couleur )
+                }
+            }
+
+            const v1 = new Vehicule(4, 3, 'volant', 'noir');
+            const m1 = new Moto('rouge', 'bidule');
+            console.log(m1);
+
+        </script>
+    </body>
+</html>

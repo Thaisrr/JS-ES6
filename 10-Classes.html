@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Les classes</title>
+        <meta charset="UTF-8">
+    </head>
+    <body>
+
+        <script>
+
+            /*  Une classe : 
+            une représentation d'un élément
+            avec: 
+                - ses propriétés
+                - ses actions ( méthodes )
+                - constructeur
+
+            un objet : une instanciation d'une classe
+            -> Un objet, une valeur, qui suis une classe
+
+            */
+        
+        class Felin {
+            // Attributs ou Propriétés
+            nom;
+            age;
+            couleur;
+            nbPattes = 4;
+            tag_name;
+
+            /* */
+            constructor(name, age, color) {
+                console.log('in constructor ');
+                this.nom = name;
+                this.age = age;
+                this.couleur = color;
+                this.tag_name = this.nom + this.age;
+            }
+
+            // Des méthodes
+            marcher() {
+                console.log(this.nom + ' marche');
+            }
+
+        }
+
+        class Chat extends Felin {
+            race;
+            proprio;
+
+            constructor(nom, age, color, race, proprio) {
+                super(name, age, color);
+                this.race = race;
+                this.proprio = proprio;
+            }
+
+            miauler() {
+                console.log("Miaou");
+            }
+
+            battre(other_cat) {
+                other_cat.couleur = 'black';
+                console.log(this.nom + ' se bat contre ' + other_cat.nom)
+            }
+
+        }
+        
+
+        const f1 = new Felin('Tigrou', 90, 'roux');
+        console.log(f1.nom);
+        f1.nbPattes = 6;
+        f1.marcher();
+
+        const c1 = new Chat('Banzaï', 1, 'gris', 'européen', 'Thaïs');
+        c1.marcher();
+        console.log(c1);
+        c1.miauler();
+
+        console.log(typeof c1); // Objet
+
+        console.log( c1 instanceof Chat );
+        console.log(c1 instanceof Felin);
+        console.log(f1 instanceof Chat);
+        console.log(c1 instanceof Felin); 
+        
+        const c2 = new Chat('Cactus', 9, 'gris', 'eu', 'Th');
+        c1.battre(c2); // Banzai se bat contre Cactus
+        c2.battre(c1); // Cactus se bat contre Banzai
+        console.log(c1);
+
+        
+       // const f2 = new Felin();
+
+
+
+
+
+        </script>
+
+    </body>
+</html>

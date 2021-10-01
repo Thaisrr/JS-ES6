@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+
+<html lang="fr">
+    <head>
+        <title>Guess the number</title>
+        <meta charset="UTF-8">
+    </head>
+    <body>
+
+        <script>
+            let to_guess;
+            let old_guess;
+
+            function startGame() {
+                to_guess = Math.floor(Math.random() * 101);
+                console.log('Random : ', to_guess);
+                alert('Présentation du jeu')
+                gameDialog('Entrez un nombre');
+               
+            }
+
+            function gameDialog(message) {
+                const user_guess = prompt(message);
+                checkNumber(user_guess);
+            }
+
+            function checkNumber(user_nb) {
+                if(!user_nb && isNaN(user_nb)) {
+                    gameDialog('Veuillez entrer un nombre valide')
+                }else if(+user_nb === to_guess) {
+                    stopGame();
+                } else if(+user_nb > to_guess) {
+                   gameDialog('Trop haut.')
+                } else if(+user_nb < to_guess) {
+                    gameDialog('Trop bas')
+                } else {
+                    gameDialog('Oups, quelque chose s\'est mal passé')
+                }
+            }
+
+            function stopGame() {
+                const again =confirm('Félicitation ! Le nombre a deviné était '
+                + to_guess + ' . Voulez-vous recommencer ?');
+                if(again) {
+                    startGame();
+                } else {
+                    alert('Bisous')
+                }
+            }
+
+            startGame();
+       
+
+
+
+        </script>
+    </body>
+
+</html>

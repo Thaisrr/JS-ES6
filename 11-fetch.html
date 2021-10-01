@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <title>Fetch et les promesses</title>
+        <meta charset="UTF-8">
+    </head>
+    <body>
+        <ul id="list"></ul>
+        <script>
+            console.log('1');
+            console.log('2');
+            getRessource()
+                .then(res => console.log(res))
+                .catch(err => alert(`Oups, quelque chose s'est mal passé`))
+                .finally(() => console.log('fin du process'))
+
+            console.log('3');
+            console.log('4');
+
+            function getRessource() {
+                const ok = false;
+        
+                return new Promise((resolve, reject) => {
+                        if(ok) {
+                            resolve(['Ceci est une information très importante !'])
+                        } else {
+                            reject(new Error(`L'information demandée n'est pas dispo`));
+                        }
+                });
+            }
+
+            function displayUsers(users) {
+                const ul = document.getElementById('list');
+                users.forEach(u => {
+                    const li = document.createElement('li');
+                    li.textContent = u.name;
+                    ul.appendChild(li);
+                });
+                
+            }
+
+
+            /*
+            https://monapi.fr/users
+            */
+           fetch('https://jsonplaceholder.typicode.com/users')
+                .then(res => res.json())
+                .then(data => {
+                    console.log(data);
+                    displayUsers(data);
+                })
+                .catch(err => console.error(err))
+
+        
+            fetch('https://world.openfoodfacts.org/api/v0/product/737628064502.json')
+                .then(res => res.json())
+                .then(d => console.log(d))
+
+            
+        
+            const user = {nom: 'Petit Ours Brun', ville: "OursCity"};
+
+            /*
+            Methodes HTTP : 
+                GET - Demander des données ( défaut dans fetch)
+                POST - Envoyer des données -> body qui contient les données
+                DELETE - Supprimer
+                PUT - Modifier des données
+            */
+
+            fetch('http://monapi.fr/user', {
+                method: 'POST',
+                body: user
+            }).then(res => console.log(res))
+            .catch(err => alert('Nope !'))
+
+            fetch('http://monapi.fr/user/56', {
+                method: 'DELETE'
+            }).then(res => console.log(res))
+            .catch(err => console.log(err))
+
+
+
+        </script>
+    </body>
+</html>

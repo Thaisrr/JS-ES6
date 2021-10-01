@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title></title>
+    </head>
+    <body>
+        <script>
+
+
+            const user = { 
+                nom : 'Jean Michel', 
+                email: 'jeanmichou@gmail.fr',
+                sayHello() { console.log(this)},
+                sayHello2 : function() {console.log(this.nom +' says Hello ! 2')},
+                sayHello3: () => console.log(this)
+            };
+            console.log(user);
+            user.nom = 'Jean-Michel';
+            user.sayHello();
+            user.sayHello2();
+            user.sayHello3();
+
+            const foo = 'machin';
+            const bar = 'bidule';
+
+            const x = {foo, bar, machin: 'truc'};
+            /* { foo : foo, bar : bar }*/
+            console.log(x);
+
+            /* 
+            for of -> tableau []
+            for in -> objets {}
+            */
+            for(let props in x) {
+                console.log(props);
+                console.log( x[props] );
+            }
+
+            const tab = ['pomme', 'poire', 'ananas'];
+            for(let i in tab) {
+                console.log(i) // index
+                console.log(tab[i])
+            }
+
+            console.log( x.hasOwnProperty('nom')); // false
+            console.log( x.hasOwnProperty('foo')); // true
+            if(x.hasOwnProperty('foo')) {
+                delete x.foo;
+            }
+
+            console.log(x);
+
+            /*
+            Objets globaux de JS
+            - Array
+            - String
+            - Date
+            - Math
+            ...
+            Window, document, element du DOM...
+            */
+           const str = "Coucou";
+           const str2 = String("Coucou");
+
+           console.log(str, str2);
+
+           // Date du jour
+           let today = new Date();
+           console.log(today);
+           let timestamp =  Date.now();
+           // Timestamp : 
+           //le nombre de millisecondes écoulées depuis 1er janvier 1970
+            console.log(timestamp);
+            console.log('jour : ' + today.getDate()); // Jour
+            console.log('heure : ', today.getHours())
+            console.log('année : ', today.getFullYear());
+            console.log('Mois, ', today.getMonth());
+
+
+            console.log(4%2); // 0
+            console.log(5%2); // 1
+
+            console.log(100%10); //0
+            console.log(25%10); // 5 
+
+            /* Maths : */
+            let n = 10;
+            // Un nombre aléatoire en 0 et <1
+            console.log( Math.random()); 
+
+            // Puissance  n puissance 10
+            console.log( Math.pow(n, 10) );
+
+            // Arrondir au supérieur
+            console.log( Math.ceil(0.95));
+
+            // Arrondir au plus proche
+            console.log(Math.round(0.9));
+            console.log(Math.round(2.1));
+
+            // Arrondir au plus petit
+            console.log(Math.floor(1.9));
+
+
+            console.log( Math.PI);
+
+            console.log( Math.min(1, 8, 0, 98));
+            console.log( Math.max(1, 8, 0, 98));
+
+            const numbs = [89, 2, 45, 90];
+
+            console.log(Math.min(...numbs));
+
+            // Random entre 0 et 10
+            console.log( Math.floor( Math.random() * 10 ) );
+
+            /*
+            Chifumi : 
+            Pierre, Feuille, Ciseaux
+            L'ordinateur joue aléatoirement
+            User à 3 boutons
+
+            Quand user clique sur un bouton, le pc joue aléatoirement
+            On calcule le score
+            On affiche le score
+            Si le score est à 5, fin du jeu
+            Alert "bravo" ou "perdu"
+            Remise à 0
+            */
+        </script>
+
+    </body>
+</html>

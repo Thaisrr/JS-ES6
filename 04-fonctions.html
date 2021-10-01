@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <title>Les fonctions</title>
+        <meta charset="UTF-8">
+    </head>
+    <body>
+
+        <script>
+
+
+            /* Les fonctions
+
+            -> Un block d'instructions, nommé
+            -> Il ne s'auto exécute pas
+            -> Il faut l'appeler pour l'exécuter
+            -> On peut le réutiliser
+            */
+
+            function sayHello() {
+                console.log('Hello there !');
+            }
+
+            sayHello();
+            sayHello();
+
+            function somme(a, b) {
+                console.log(`${a} + ${b} est égal à ${a + b}`);
+                // const result = a + b;
+                // return result;
+                return a + b;
+                
+            }
+
+            const result1 = somme(23, 87);
+            const result2 = somme(65, 90);
+            const result3 = somme(somme(23, 45), somme(100, 12));
+            const result4 = somme(result1, result2);
+            
+            /*** fonctions anonymes ***/
+
+            /* Visibles dans certaines docs pour les callbacks, 
+            et dans certains frameworks comme Vue.js */
+            const multi = function(a, b) {
+                return a*b;
+            }
+
+            function multi2(a,b) {
+                return a*b;
+            }
+
+            const result6 = multi(2, 6);
+
+
+
+            function my_callback(item) { 
+                console.log(item)
+            }
+
+            const tab = [1, 3, 2];
+            tab.forEach( my_callback );
+
+            tab.forEach( function(item) {
+                console.log(item)
+            });
+
+            tab.forEach(item => console.log(item));
+
+            /** Les fonctions fléchées ***/
+
+            const div = (a, b) => a / b;
+            /* Le retour est implicite quand on écrit
+            la fonction en 1 ligne, sans accolades */
+
+            function div2(a, b) {
+                return a / b;
+            }
+
+            const div3 = (a, b) => {
+                /* Si on a plusieurs instructions, 
+                ou une seule mais avec accolades, il
+                faut utiliser le mot clef return 
+                ( si on veut un retour ) */
+                console.log('coucou');
+                return a / b;
+            }
+
+            const result7 = div(7, 2);
+            console.log(result7);
+
+        </script>
+    </body>
+</html>

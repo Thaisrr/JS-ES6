@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Les conditions</title>
+        <meta charset="UTF-8">
+    </head>
+    <body>
+
+
+        <script>
+
+            /** Les conditions **/
+
+            /** Si ma condition est valable, alors
+             *  -> instruction 1
+             * Sinon si une autre condition est valable, alors
+             *  -> instruction 2
+             * Sinon, par défaut, 
+             *  -> instruction 3
+             */
+        
+        if(3 >  5) {
+            console.log('Condition 1 valide');
+        } else if (3 === 5) {
+            console.log('Condition 2 valide');
+        } else {
+            console.log('Condition non valide');
+        }
+
+        let bool = true;
+        if(bool) {
+            console.log('Mon booléan est vrai');
+        } else {
+            console.log('Mon booléan est faux');
+        }
+
+        let toto;
+        if(!toto) {
+            console.log('Ma variable toto est undefined');
+            toto = 'quelque chose';
+        }
+
+        console.log('toto' < 95);
+        console.log(+toto); // Nan
+  
+        if(isNaN(toto)) {
+            console.log('toto is nan');
+            // C'est pas un number, on peut pas faire d'opération dessus
+        }
+
+        if('toto' > 95) {
+            console.log('supérieur');
+        } else {
+            console.log('inférieur');
+        }
+
+        const name = prompt('Quel est votre nom ?');
+        const age = prompt(`Bonjour ${name}, quel est votre age ?`);
+
+        /* Cumuler des conditions
+        || ou -> au moins une des conditions doit être valide
+        && et -> toutes les conditions doivent être valides
+        */
+
+        // Si user a entré une chaine vide ou non valide
+        if(!age || isNaN(age)  ) {
+            alert('Votre age n\'est pas valide');
+        } else if(+age > 95) {
+            alert('Vous êtes + agé.e que la reine d\'angleterre');
+        } else if( +age === 95) {
+            // Attention : === vérifie le type également
+            alert('Vous avez le même age que la reine d\'angleterre');
+        } else if(+age < 95) {
+            alert('Vous êtes + jeune que la reine d\'angleterre');
+        } else {
+            alert('Oups, something\'s wrong')
+        }
+        
+
+        /*** Les Switchs *****/
+
+        /* On fait qqch sur une variable en fonction de sa valeur 
+        Quand on connait les valeurs possibles de la variable
+        */
+
+        const day = 'Lundi';
+        switch (day) {
+            case 'Lundi' :
+                console.log('On est lundi');
+                break;
+            case 'Mercredi' :
+                console.log('Milieu de semaine !');
+                break;
+            case 'Jeudi' :
+                console.log('Courage !');
+            case 'Vendredi' :
+                console.log('Bientôt le we');
+                break;
+            case 'Samedi' || 'Dimanche' :
+                console.log('Week End !');
+                break;
+            default:
+                console.log('meh...');
+        }
+
+        /*** Les conditions ternaires ****/
+
+        let isEvening = true;
+        let message;
+
+        if(isEvening) {
+            message = `Bonsoir`
+        } else {
+            message = `Bonjour`
+        }
+
+        // Si condition vrai ? première option : sinon deuxième opt
+        message = (isEvening) ? 'Bonsoir' : 'Bonjour';
+        message = ((isEvening) ? 'Bonsoir' : 'Bonjour') + ' les amis';
+
+        console.log(message); // Bonsoir
+
+
+        </script>
+    </body>
+</html>

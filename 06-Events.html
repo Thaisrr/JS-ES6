@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <title>Les Events</title>
+        <meta charset="UTF-8">
+        <style>
+            body { height: 300vh;}
+            #nav {
+                height: 50px;
+                background-color: hotpink;
+                width: 100%;
+                position: sticky;
+                top: 0;
+                display: none;
+            }
+        </style>
+    </head>
+    <body>
+        <nav id="nav">Coucou, je suis la nav</nav>
+        <div style="border: solid blue 3px" onclick="console.log('Parent')">parent
+            <p style="border: dashed red 2px" onclick="console.log('enfant')">enfant
+                <button id="btn">Clic</button>
+            </p>
+        </div>
+
+        <div id="block" 
+            style="width: 100px; height: 100px; background: blue;">
+        </div>
+
+        <div id="code-container">
+            <button id="btn-copy">copy</button>
+        </div>
+
+        <script>
+
+           function changeColor(el) {
+                el.style.background = 'yellow';
+           } 
+           // True : on peut mettre le dialogue
+           // False : on ne met plus le dialogue
+           let dialLeave = true;
+           let time;
+           let scroll_max = 0;
+           let scroll_position = 0;
+
+           console.log(window);
+           // Position de scroll verticale
+           console.log(window.scrollY);
+           // Position de scroll horizontale
+           console.log(window.scrollX);
+           console.log(`Ma fenêtre fait ${window.innerHeight} ( hauteur ) sur ${window.innerWidth} (largeur)`);
+           console.log(window.location);
+          // window.location = 'https://www.dawan.fr';
+
+          localStorage.setItem('nom', 'Thaïs');
+          console.log(localStorage.getItem('nom'));
+          // Effacer 1 élément
+          localStorage.removeItem('nom');
+          // Tout effacer
+          localStorage.clear();
+
+          sessionStorage.setItem('nom', 'Thaïs');
+          
+          console.log(window.navigator);
+
+
+
+           
+        document.addEventListener('DOMContentLoaded', (e) => {
+                // Attend que le HTML soit complétement chargé
+                // ( mais pas le CSS )
+
+            const btn = document.getElementById('btn');
+            const block = document.getElementById('block');
+
+            const code_c = document.getElementById('code-container');
+            const btn_c = document.getElementById('btn-copy');
+
+            const text = 'ici, du texte';
+            const code_t = document.createElement('code');
+            code_t.textContent = text;
+            code_c.appendChild(code_t);
+
+            btn_c.addEventListener('click', () => {
+                window.navigator.clipboard.writeText(text);
+            })
+            
+
+            btn.addEventListener('click', (event) => {
+                // Empèche la propagation sur les events parents
+                event.stopPropagation();
+                // Empêche la propagation sur les events du même
+                // objet et de même type
+                event.stopImmediatePropagation();
+                console.log('bouton');
+                console.log(event);
+                changeColor(btn);
+
+                /*
+                do something ( createElement, modification...ect)
+                */
+            });
+            btn.addEventListener('click', (event) => {
+                console.log('bouton 2');
+                console.log(event);
+            });
+
+
+            block.addEventListener('mouseover', (e) => {
+                e.stopPropagation();
+                block.style.background = 'orange';
+                console.log(`Souris entrée à ${e.x} / ${e.y}`);
+                const div = document.createElement('div');
+                div.style.width = '5px';
+                div.style.height = '5px';
+                div.style.background = 'violet';
+                div.style.position = 'relative';
+                div.style.top = e.y + 'px';
+                div.style.left = e.x + 'px';
+                block.style.position = 'relative';
+                block.appendChild(div);
+            });
+
+            block.addEventListener('mouseout', (e) => {
+                block.style.background = 'blue';
+            });
+
+            document.addEventListener('keydown', (e) => {
+                console.log(e);
+                console.log('touche : ' + e.key)
+                if(e.key === 'ArrowUp') {
+                    console.log('Avancer en haut')
+                }
+            });
+
+            document.addEventListener('mousemove', (e) => {
+                clearTimeout(time);
+                if(e.y < 70 && dialLeave) {
+                    alert('Voulez vous vraiment partir ?')
+                    dialLeave = false;
+                }
+                time = timer();
+            })
+
+            document.addEventListener('scroll', (e) => {
+                const nav = document.getElementById('nav')
+                scroll_position = window.scrollY;
+                if(scroll_position > 500) {
+                    nav.style.display = 'block';
+                } else {
+                    nav.style.display = 'none';
+                }
+                if(scroll_max < window.scrollY) {
+                    scroll_max = window.scrollY;
+                }
+            })
+
+        });
+
+        function timer() {
+            return setTimeout(() => {
+                alert('no move')
+            }, 50000) // 5000 -> 5s
+        }
+
+   
+
+        </script>
+
+
+    </body>
+</html>

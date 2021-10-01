@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <title>L'objet String</title>
+        <meta charset="UTF-8">
+    </head>
+    <body>
+
+        <script>
+            const name = 'Toto';
+            let hello = "Hello " + name + " ! C'etait bien les vacances ?";
+            // A privilégier
+            hello = 'Hello ' + name + ' ! C\'était bien les vacances';
+            // ES6
+            hello = `Hello ${name} ! C'était bien les vacances ?`;
+
+           /* Objet : Une représentation complexe d'un élément
+           > attributs
+           > constructeur
+           > méthodes   
+           */
+          // Retourne une copie de la string en majuscules
+          hello = hello.toUpperCase();
+            console.log(hello);
+            hello = hello.toLowerCase();
+
+            hello = hello.toLocaleUpperCase('en-US');
+            console.log(hello);
+
+            let str = '   machin ï î ê é è';
+            console.log(str);
+            str = str.trim();
+            console.log(str);
+            /*
+            str.trimStart() -> espaces avant
+            str.trimEnd() -> espaces après
+            */
+
+            let lyrics = 'la lala lala';
+            // entre 0 et n fois 
+            console.log(lyrics.repeat(5));
+
+            console.log(`Le 4ème caractère de ma chaine est ${str.charAt(3)}`);
+
+            console.log(`Il y a-t-il un z dans ma chaine ? ${str.includes('z')}`);
+
+            // Majuscules
+            console.log(str.match(/[A-Z]/g)); 
+            // Tableau des caractères / élèmesnt qui matchent l'expression passée
+            console.log(str.match(/[a-z]/g));
+            console.log(str.match(/[0-9]/g)); 
+
+            let str_array =  str.split('');
+            str_array = str_array.reverse();
+            str = str_array.join('');
+
+            console.log(str);
+            
+            /* Un formulaire nom prénom
+            -> on vérifie que l'user écrive
+            uniquement des lettres, tiret, et apostrophes
+            ï, ê, î
+            -> on nettoie la chaîne quand elle est valide
+                -> espaces, 
+                -> Machin
+            */
+
+            
+
+
+
+ 
+        </script>
+
+    </body>
+</html>

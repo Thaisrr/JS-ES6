@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <title>TODO List</title>
+        <meta charset="UTF-8">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+      <link href="./todo.css" rel="stylesheet">
+    </head>
+    <body>
+      <div class="container">
+            <div class="form">
+                <input aria-label="Entrez votre tache" id="input" class="input" placeholder="Nouvelle tâche">
+                <button id="btn" class="btn">
+                    <span class="material-icons">
+                        post_add
+                    </span>
+                </button>
+            </div>
+            <div id="tasks-container"></div>
+      </div>
+      <script>
+          const btn = document.getElementById('btn');
+          const input = document.getElementById('input');
+          const tasks = [];
+          const container = document.getElementById('tasks-container');
+
+          function saveTask(t) {
+            tasks.push(t);
+            let el = document.createElement('div');
+            let p = document.createElement('p')
+            el.className = 'task';
+            p.textContent = t;
+            el.appendChild(p);
+            el = createDoneBtn(el);
+            el = createDeleteBtn(el);
+            container.appendChild(el);
+          }
+
+          function createDoneBtn(el) {
+            const done = document.createElement('button');
+            const icon = document.createElement('span');
+            icon.textContent = 'done';
+            icon.className = 'material-icons';
+            done.className = 'btn done-btn';
+            done.appendChild(icon);
+            done.addEventListener('click', (e) => {
+                e.preventDefault();
+                el.classList.add('done');
+            })
+            el.appendChild(done);
+            return el;
+          }
+
+          function createDeleteBtn(el) {
+            const del = document.createElement('button');
+            const icon = document.createElement('span');
+            icon.textContent = 'delete';
+            icon.className = 'material-icons';
+            del.className = 'btn del-btn';
+            del.appendChild(icon);
+            del.addEventListener('click', (e) => {
+                e.preventDefault();
+                container.removeChild(el);
+                const index = tasks.indexOf(el.textContent);
+                if(index > -1) {
+                    tasks.splice(index, 1);
+                }
+            })
+            el.appendChild(del);
+            return el;
+          }
+
+          document.addEventListener('DOMContentLoaded', () => {
+            
+            btn.addEventListener('click', () => {
+                if(input.value) {
+                    saveTask(input.value);
+                    input.value = '';
+                }
+            });
+            input.addEventListener('keypress', (e) => {
+                if(e.key === 'Enter' && input.value) {
+                    saveTask(input.value);
+                    input.value = '';
+                }
+            })
+          });
+
+
+      </script>
+
+    </body>
+</html>

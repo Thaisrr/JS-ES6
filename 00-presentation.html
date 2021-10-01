@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8"/>
+    <title>Présentation</title>
+  <!-- <script src="monfichier.js"></script>--> 
+</head>
+
+<body>
+
+
+
+
+    <!--
+        Javascript : 
+            script : scénario d'événements qui s'exécutent les 
+            uns en dessous des autres, en fonctions événements
+            côté client : s'éxécute dans le navigateur 
+                moteurs : V8 -> Chrome / Chromium
+                        spidermonkey : mozilla firefox
+                Visible par le client
+            non typé : string, int, float...
+
+        
+        Framework JS: 
+            - node.js -> permet d'utiliser JS côté serveur
+            - front : Vue.JS, Angular, React
+                > composants réutilisables
+                > Single Page Application
+                > Facilite le code
+                > Structurer le code 
+    -->
+
+
+
+
+
+<script>
+
+    /*
+    Déclarer une variable : déclare l'existance d'une variable
+
+    Initialiser une variable : donner sa première valeur à une variable
+    */
+
+
+
+    // ES6 : Ecmascript 2015
+    /*
+    Normes pour les langages Script et plus précisément JS
+    Normes de syntaxe, et nouvelles fonctionnalités à chaques
+    évolution d'ecmascript
+
+
+    (Babel)
+    */ 
+
+
+    // Javascript Old School : 
+    var a = 'Hello World';
+
+    // ES6
+    let b = 'Bonjour le monde';
+    const name = 'Toto';
+    b = 'Holà ! ';
+    // name = 'Bidule'; 
+    //-> on ne peut pas réassigné une valeur à une constante
+
+
+    /* Les strings : ou chaîne de caractères */
+     let c = 'coucou, le js c\'est cool';
+     c = "Aujourd'hui on apprend le JS";
+     // Quotes inversées : alt gr + 7
+     c = `C'est lundi, "youpi"`;
+
+     // concaténation : colle plusieurs string ensemble
+     c = 'cooucou ' + 'Jean Michel';
+     c = 'coucou ' + name +  ' !';
+     c = `Coucou ${name} !`;
+     console.log('Pour logger, on utilise "console.log()"');
+     console.log(c);
+     c = ` 1 + 2 = ${1+2}`;
+     console.log(c);
+
+    /* Number : int, float, double... */
+    let calcul = 23;
+    //On stocke le résultat de l'opération
+    calcul = 1 + 1.2;
+    console.log(calcul);
+    /* Opérateurs de calcul :
+    + - / * %
+    */
+
+    // Attention : 
+    const d = '1';
+    const e = 2;
+    // Un + avec une string est considéré comme une concaténation
+    // JS ne fait donc pas l'opération
+    let f = d + e;
+    console.log(f);
+    f = +d + e; // Il transforme d en number
+    console.log(f);
+    f = d - e;
+    console.log(f);
+
+    f = f + 1;
+    f++; // Incrémentation : +1
+    f = f - 1;
+    f--; // Décrémentation
+
+    f = f + 2;
+    f += 2; // f = f + 2
+    f -= 2; // f = f - 2
+    f *= 2; // f = f * 2
+    f /= 2; // f = f / 2
+
+    const g = 'toto';
+    f = 32 - g;
+    console.log(f);
+    // NaN : Not a Number
+    f = NaN;
+    f += 34;
+    console.log(f);
+
+
+    /**** Boolean *****/
+    /*
+    True ou False 
+    Condition -> true ou false
+    Existance -> true ou false
+    */
+
+    let h = true;
+    h = false;
+    /* Opérateurs de condition : 
+    Comparer 2 valeurs
+    Est-ce que la valeur est...
+        === égale à 
+        !== différente de
+        > < strictement supérieure ou inférieure à 
+        >= <= sup ou égale, inférieure ou égale
+
+        Dans l'assignation : 
+            !bool => l'inverse du booléan
+            si bool === true, alors !bool === false
+            si bool === false, alors !bool === true
+            bool = !bool
+            
+
+        Dans des conditions
+            si (!bool) -> si bool === false
+            si (!variable) -> si la variable n'est pas initialisée
+            let variable;
+                si (!variable) => true         
+            variable = valeur
+                si (!variable) => false
+
+    */
+
+    let i = 2 < 8;
+    console.log(i); //true
+    i = 8 === 6; 
+    console.log(i); // false
+    console.log(!i); // true
+    let j; // undefined => false
+    i = j; // undefined
+    i = !j;  // true 
+    /* (est-ce j est false
+     OU est-ce que j est une variable non initialisée -> undefined
+     )*/
+    console.log(j); // undefined puisque non initialisée
+    console.log(i); // true
+    j = !i; //false
+    j = undefined;
+
+    /* Pour afficher des messages de debug */
+    console.error('Afficher une erreur');
+    console.warn('Afficher un warning');
+    console.log('Afficher un log');
+    console.info('Afficher des infos');
+
+    // Pour afficher des messages à l'utilisateur.rice
+    alert('Bonjour user !');
+    const user = prompt('Entrez votre nom'); // string
+    console.log(`Mon user s'appelle ${user}`);
+    const choice = confirm('Continuer ?');
+    console.log(`Continuer ? ${choice}`); // Boolean
+
+    /*
+    -> Demander son nom a l'user
+    -> On lea salue avec son nom on demande son age
+    -> On lui dit si iel est + vieux ou + jeune que la reine d'angleterre
+    ( 95 ans )
+    */
+
+
+    /**** Conditions ***/
+
+
+    
+
+
+
+
+
+
+</script>
+
+    
+</body>
+</html>

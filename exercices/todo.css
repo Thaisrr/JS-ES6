@@ -1,0 +1,89 @@
+* {
+    box-sizing: border-box;
+}
+
+.container {
+    width: 40%;
+    margin: 30px auto;
+}
+
+.form {
+    display: flex;
+    align-items: center;
+    height: 30px;
+}
+
+.input {
+    height: 100%;
+    border-radius: 5px;
+    border: solid 2px #8B95C9;
+}
+
+.btn {
+    background-color: transparent;
+    color: #8B95C9;
+    border: none;
+    height: 100%;
+    border-radius: 5%;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: solid 2px transparent;
+}
+
+.btn:hover {
+    background-color: #8b95c95d;
+    border-color: #8b95c9 ;
+    font-weight: 700;
+}
+
+.task {
+    height: 30px;
+    display: flex;
+    border-bottom: solid 1px #12263A;
+    padding-top: 10px;
+    padding-bottom: 3px;
+}
+.task:hover {
+    background-color: #8b95c938 ;
+}
+
+#tasks-container {
+    margin-top: 50px;
+}
+
+.task>p {
+    padding: 0;
+    margin: 0;
+    width: 70%;
+    height: 100%;
+}
+
+.done {
+    text-decoration: line-through;
+}
+
+.del-btn {
+    color: #c83e4d;
+    border: none;
+}
+
+.done-btn {
+    color: #94c9a9;
+    border: none;
+}
+
+.done-btn:hover, .del-btn:hover {
+    background-color: #c83e4d5d;
+    border: none ;
+    font-weight: normal;
+}
+
+.del-btn:hover {
+    background-color: #c83e4d5d;
+}
+
+.done-btn:hover {
+    background-color: #94c9a95d;
+}

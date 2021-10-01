@@ -1,0 +1,14 @@
+-> Un message secret, enregistrer dans JS
+-> Pour l'afficher, l'user doit entrer un mot de passe
+( le bon mot de passe est sauvegardé dans une variable JS )
+-> User entre le bon mot de passe
+    -> On créé un paragraphe pour afficher le secret
+    -> Un bouton pour supprimer le message
+
+-> Si il entre le mauvais mot de passe, on lui met un message d'erreur
+-> Au bout de 3 tentatives, il ne peut plus essayer
+
+
+-> On écrit de belles fonctions pour ranger le code
+-> Avec des noms de fonction clairs
+    -> Un fonction : un block d'instruction

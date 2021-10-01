@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <title>Le DOM</title>
+        <meta charset="UTF-8">
+        <style>
+            body {
+                margin: 0;
+            }
+            #menu {
+                width: 15%;
+                height: 90vh;
+                box-shadow: 1px 1px 5px grey;
+            }
+        </style>
+    </head>
+    <body>
+        <h1 onclick="changeColor()" id="title">   Mon super titre ! <span style="display: none;">Hello World</span>  </h1>
+
+        <nav>
+            <button onclick="openMenu()" id="btn-menu">Open</button>
+            <div style="display: none;" id="menu">Ici se trouve mon menu</div>
+        </nav>
+
+        <p class="toto">Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae quidem, consectetur minus non voluptas, adipisci laboriosam amet esse fugit totam voluptatem alias sequi corrupti accusamus rerum magni. Explicabo, ipsa ullam.</p>
+
+        <p class="toto">Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae quidem, consectetur minus non voluptas, adipisci laboriosam amet esse fugit totam voluptatem alias sequi corrupti accusamus rerum magni. Explicabo, ipsa ullam.</p>
+
+        <p class="toto">Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae quidem, consectetur minus non voluptas, adipisci laboriosam amet esse fugit totam voluptatem alias sequi corrupti accusamus rerum magni. Explicabo, ipsa ullam.</p>
+
+        <p class="toto">Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae quidem, consectetur minus non voluptas, adipisci laboriosam amet esse fugit totam voluptatem alias sequi corrupti accusamus rerum magni. Explicabo, ipsa ullam.</p>
+
+        <div id="container"></div>
+
+        <ul id="ul"></ul>
+
+        <div>
+            <button onclick="showMessage()">Secret</button>
+            <div id="secret"></div>
+        </div>
+
+        <script>
+            const title = document.getElementById('title');
+            console.log(title);
+            const btn = document.getElementById('btn-menu');
+            const menu = document.getElementById('menu');
+            let isOpen = false;
+            const container = document.getElementById('container');
+
+            console.log(localStorage.getItem('nom'))
+            /*
+            querySelector : 1 seul élément, le 1er trouvé
+                -> sur un id #nomId, ou sur balise unique body, main, h1...
+            querySelectorAll : tableau d'éléments
+            */
+            const l_p = document.querySelectorAll('.toto');
+
+            l_p.forEach( (p) => {
+                p.style.color = 'orange';
+            });
+
+            /*** Création d'un élément ***/
+            const message = document.createElement('p');
+            message.textContent = 'Hello World !';
+            message.style.color = 'violet';
+            /* classes : */
+            message.className = 'classe1 classe2';
+            message.classList.add('classe3');
+            message.classList.remove('classe2');
+            message.classList.replace('classe1', 'classe4');
+            // classe 3 et 4
+
+            // Intégrer le nouvel élément au HTML
+            container.appendChild(message);
+
+            container.removeChild(message);
+
+
+            // Le contenu de la balise, 
+            // Standardisé, à privilégier
+            // Valable sur les HTMLElement et Node object
+            console.log(title.textContent);
+            
+            //InnerText : que le texte visible
+            // Propriété non standardisée
+            // Valable uniquement sur les HTMLElement
+            console.log(title.innerText);
+
+            //A ne pas utiliser, encore moins sur du contenu
+            //en lequel on a pas confiance, entrée d'user par exemple 
+            console.log(title.innerHTML);
+    
+            function changeColor() {
+                 // margin-right -> marginRight
+                title.style.color = 'red';
+                title.style.fontSize = '40px';
+                console.log(title);
+            }
+
+            function openMenu() {
+                if(!isOpen) {
+                    menu.style.display = 'block';
+                    btn.textContent = 'Close';
+                    isOpen = true;
+                } else {
+                    menu.style.display = 'none';
+                    btn.textContent = 'Open';
+                    isOpen = false;
+                }
+            }
+
+
+            /*
+            -> Un bouton qui permet d'afficher un message secret, 
+            ou de le retirer
+
+            -> Afficher une liste en JS
+            */
+           const list = ['John Snow', 'Voldemort', 'Infirmère Ratched']
+
+           const ul = document.getElementById('ul');
+
+           for( let el of list) {
+               const li = document.createElement('li');
+               li.textContent = el;
+               ul.appendChild(li);
+           }
+
+           let isShown = false;
+           const parent = document.getElementById('secret');
+            const s = document.createElement('p');
+            s.textContent = 'secret';
+
+           function showMessage() {
+                if(isShown) {
+                    parent.removeChild(s);
+                    isShown = false;
+                } else {
+                    parent.appendChild(s);
+                    isShown = true;
+                }
+           }
+
+
+
+        </script>
+        
+    </body>
+</html>
